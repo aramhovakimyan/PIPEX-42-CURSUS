@@ -14,6 +14,21 @@ With Pipex, you can:
 
 By using Pipex, you can avoid the need to manually create temporary files or use complex shell commands to achieve the desired data processing flow. The tool provides a straightforward interface that allows you to focus on the logic of your data processing tasks, saving you time and effort.
 
+## Fork, Pipe, execve, and dup2 Functions
+
+Pipex heavily relies on several fundamental Unix system calls and functions, including `fork`, `pipe`, `execve`, and `dup2`. These functions play a crucial role in the functioning of the project:
+
+-   `fork`: The `fork` function creates a new process by duplicating the existing process. In Pipex, `fork` is used to create child processes that will execute the specified commands.
+    
+-   `pipe`: The `pipe` function creates a unidirectional pipe, which allows the output of one process to be connected to the input of another process. In Pipex, `pipe` is used to establish communication channels between successive commands in the pipeline.
+    
+-   `execve`: The `execve` function is used to execute a new program in the current process. In Pipex, `execve` is called by the child processes to execute the specified commands.
+    
+-   `dup2`: The `dup2` function duplicates a file descriptor, making it refer to the same file or resource. In Pipex, `dup2` is used to redirect the standard input and output of the child processes to the appropriate file descriptors and pipes.
+    
+
+By leveraging these functions, Pipex achieves the seamless flow of data between commands, allowing you to construct powerful pipelines with ease.
+
 ## Installation
 
 To use Pipex, you need to follow these steps:
